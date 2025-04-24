@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Scheduler</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    tr:nth-child(even) {
+      background-color: #D6EEEE;
+    }
+  </style>
+</head>
+<body>
+    <h1>Schedule a Long-Running Task</h1>
+    <label>Duration (seconds):</label><br>
+    <input type="number" id="taskDuration" value="5"><br>
+    <button onclick="createTask()">Create Task</button>
+
+    <h1>Task List</h1>
+    <table border: 5px solid black;>
+        <thead>
+        <tr>
+            <th>ID</th><th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="taskTable"></tbody>
+    </table>
+
+  <script>
+    async function createTask() {
+      const duration = document.getElementById("taskDuration").value;
+      try{
+          await fetch("http://localhost:8000/api/v1/tasks/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ duration: parseInt(duration) })
+        });
+      } catch(error) {
+        console.error("Error creating task:", error);
+      }
+    }
+
+    async function getTaskStatuses() {
+      try{
+        const response = await fetch("http://localhost:8000/api/v1/tasks/", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        const tasks = await response.json();
+        const table = document.getElementById("taskTable");
+        table.innerHTML = "";
+        tasks.forEach(task => {
+            const row = `<tr><td>${task.task_id}</td><td>${task.status}</td></tr>`;
+            table.innerHTML += row;
+        });
+      } catch (error) {
+        console.error("Error retrievng task statuses:", error);
+      }
+    }
+
+    setInterval(getTaskStatuses, 1000);  // refresh every second
+
+  </script>
+</body>
+</html>
