@@ -8,7 +8,7 @@
   - [Docker](https://www.docker.com/)
   - [Docker Compose v2](https://docs.docker.com/compose/)
   
-# Evaluate Solution
+# Build & Run Solution
 - Build the Docker containers:
 
       cd atropos-projects/backend

@@ -32,7 +32,7 @@ Description:
 '''
 def run_task(task_id: str, duration: int):
 
-    filepath = "tasks/"+task_id+".py"
+    filepath = "app/tasks/"+task_id+".py"
 
     if os.path.exists(filepath):
         # run the python script...
