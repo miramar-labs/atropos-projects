@@ -1,10 +1,10 @@
 
 # START HERE
-- First, clone GitHub repo:
+- First, clone the project GitHub repo:
  
       git clone git@github.com:miramar-labs/atropos-projects.git
 
-- Next, ensure you have the required tools:
+- Next, ensure you have the required toolchain:
   - [Docker](https://www.docker.com/)
   - [Docker Compose v2](https://docs.docker.com/compose/)
   
