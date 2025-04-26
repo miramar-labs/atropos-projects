@@ -32,7 +32,7 @@
 
 - Run tests (from commandline):
 
-  - First, start REDIS (only):
+  - First, start REDIS (if not already running):
   
             cd atropos-projects/backend
             docker compose up redis
