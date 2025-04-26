@@ -31,11 +31,19 @@
 
 - Configure Development Environment [optional]:
   
-- [install vscode](https://code.visualstudio.com/)
+- [Install vscode](https://code.visualstudio.com/)
+
+  - Install extensions:
+   
+    - Docker (microsoft)
+    - Python (microsoft)
+    - PyLance (microsoft)
+    - Python Debugger (microsoft)
   
-- [install pyenv](https://github.com/pyenv/pyenv)
   
-- then create a python virtual environment:
+- [Install pyenv](https://github.com/pyenv/pyenv)
+  
+- Then create a python virtual environment:
   
         pyenv install 3.12.8
         pyenv virtualenv 3.12.8 atropos
@@ -46,6 +54,7 @@
         cd backend
         pip install -r requirements.txt
 
+- Run `vscode` and open the `atropos-projects` folder
 
 # REFERENCES
   [FastAPI docs](https://fastapi.tiangolo.com/)
