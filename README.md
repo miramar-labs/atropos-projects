@@ -30,6 +30,17 @@
       http://localhost/8000/docs
 
 
+- Run tests (from commandline):
+
+  - First, start REDIS (only):
+  
+            cd atropos-projects/backend
+            docker compose up redis
+
+  - Now run the tests:
+
+            pytest
+
 # Configure Development Environment [optional]:
   
 - [Install vscode](https://code.visualstudio.com/)

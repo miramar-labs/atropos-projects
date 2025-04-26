@@ -7,6 +7,8 @@ from typing import List
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
+# States: PENDING->RUNNING->[COMPLETED/FAILED]
+
 @router.post("/", response_model=TaskStatus)
 def create_task(task: TaskRequest, background_tasks: BackgroundTasks):
     task_id = str(uuid4())
