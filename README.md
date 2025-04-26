@@ -8,6 +8,7 @@
   - [Docker](https://www.docker.com/)
   - [Docker Compose v2](https://docs.docker.com/compose/)
   
+# Evaluate Solution
 - Build the Docker containers:
 
       cd atropos-projects/backend
@@ -29,7 +30,7 @@
       http://localhost/8000/docs
 
 
-- Configure Development Environment [optional]:
+# Configure Development Environment [optional]:
   
 - [Install vscode](https://code.visualstudio.com/)
 
