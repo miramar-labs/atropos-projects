@@ -4,8 +4,34 @@
   <meta charset="UTF-8">
   <title>Task Scheduler</title>
   <style>
-    table, th, td {
-      border: 1px solid black;
+    .container {
+      width: 100%
+    }
+    .responsive-table {
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+      table-layout: auto; /* important: let it size based on content */
+    }
+
+    .responsive-table th, .responsive-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      white-space: nowrap; /* prevent wrapping if you want cells tight */
+    }
+
+    .responsive-table thead {
+      background-color: #f0f0f0;
+    }
+
+    /* Optional: make the table horizontally scrollable if too wide */
+    @media (max-width: 768px) {
+      .responsive-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
     }
     tr:nth-child(even) {
       background-color: #D6EEEE;
@@ -19,15 +45,17 @@
     <button onclick="createTask()">Create Task</button>
 
     <h1>Task List</h1>
-    <table border: 5px solid black;>
-        <thead>
-        <tr>
-            <th>ID</th><th>Status</th>
-        </tr>
-        </thead>
-        <tbody id="taskTable"></tbody>
-    </table>
-
+    <div class="container">
+      <table class="responsive-table">
+          <thead>
+          <tr>
+              <th>ID</th><th>Result</th><th>Status</th>
+          </tr>
+          </thead>
+          <tbody id="taskTable"></tbody>
+      </table>
+    </div>
+    
   <script>
     async function createTask() {
       const duration = document.getElementById("taskDuration").value;
@@ -52,7 +80,7 @@
         const table = document.getElementById("taskTable");
         table.innerHTML = "";
         tasks.forEach(task => {
-            const row = `<tr><td>${task.task_id}</td><td>${task.status}</td></tr>`;
+            const row = `<tr><td>${task.task_id}</td><td>${task.result}</td><td>${task.status}</td></tr>`;
             table.innerHTML += row;
         });
       } catch (error) {
