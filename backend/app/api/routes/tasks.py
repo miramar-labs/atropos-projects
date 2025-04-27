@@ -11,10 +11,11 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 
 @router.post("/", response_model=TaskStatus)
 def create_task(task: TaskRequest, background_tasks: BackgroundTasks):
-    task_id = str(uuid4())
-    set_task(task_id,{"status": "PENDING", "result": None})
-    background_tasks.add_task(run_task, task_id, task.duration)
-    return TaskStatus(task_id=task_id, status="PENDING")
+    if task.task_id == '':
+         task.task_id = str(uuid4())
+    set_task(task.task_id,{"status": "PENDING", "result": None})
+    background_tasks.add_task(run_task, task.task_id, task.duration, task.uri)
+    return TaskStatus(task_id=task.task_id, status="PENDING")
 
 @router.get("/{task_id}", response_model=TaskStatus)
 def check_task_status(task_id: str):
@@ -27,5 +28,10 @@ def check_task_status(task_id: str):
 def check_all_task_statuses():
     resp=[]
     for i,(k,v) in enumerate(get_all_tasks()):
-        resp.append(TaskStatus(task_id=k, status=v['status'], result=v['result']))
+        status,result = v['status'],v['result']
+        if status is None:
+            status = ""
+        if result is None:
+            result = ""
+        resp.append(TaskStatus(task_id=k,status=status, result=result))
     return resp

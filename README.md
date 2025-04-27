@@ -41,6 +41,14 @@
 
             pytest
 
+  - Alternatievly you can run/debug tests with coverage from vscode:
+
+  ![test coverage](resources/scr1.png)
+
+# Application Notes
+
+      - COMING SOON
+
 # Configure Development Environment [optional]:
   
 - [Install vscode](https://code.visualstudio.com/)
@@ -67,8 +75,3 @@
         pip install -r requirements.txt
 
 - Run `vscode` and open the `atropos-projects` folder
-
-# REFERENCES
-  [FastAPI docs](https://fastapi.tiangolo.com/)
-
-  [uvicorn HTTP server](https://www.uvicorn.org/)

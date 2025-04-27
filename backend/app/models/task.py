@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 class TaskRequest(BaseModel):
     duration: int               # in seconds, to simulate long-running work
+    task_id: str                # run custom task of this UUID
     uri: str | None = None      # [optional] S3 URI pointing to bucket containing task input artifacts
 
 class TaskStatus(BaseModel):

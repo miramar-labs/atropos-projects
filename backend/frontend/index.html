@@ -36,12 +36,64 @@
     tr:nth-child(even) {
       background-color: #D6EEEE;
     }
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
   </style>
 </head>
 <body>
     <h1>Create Task</h1>
-    <label>Duration (seconds):</label><br>
-    <input type="number" id="taskDuration" value="5"><br>
+    <div class="tab">
+      <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Simple')">Simple</button>
+      <button class="tablinks" onclick="openTab(event, 'Custom')">Custom</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Simple" class="tabcontent">
+      <label>Duration (seconds):</label><br>
+      <input type="number" style='field-sizing:content' id="taskDuration" value="5"><br>
+    </div>
+
+    <div id="Custom" class="tabcontent">
+      <label>Custom UUID:</label><br>
+      <input type="string" style='field-sizing:content' id="taskID" value="1f983fea-41d2-43ca-8f59-dffa99d1cba3"><br>
+  
+      <label>S3 uri:</label><br>
+      <input type="string" style='field-sizing:content' id="taskURI" value="s3://example-bucket/"><br>
+    </div>
+    <br>
     <button onclick="createTask()">Create Task</button>
 
     <h1>Task List</h1>
@@ -57,13 +109,47 @@
     </div>
     
   <script>
+    document.getElementById("defaultOpen").click();
+
+    function openTab(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
     async function createTask() {
-      const duration = document.getElementById("taskDuration").value;
+      duration = document.getElementById("taskDuration").value;
+      tid = ""
+      uri = ""
+      if (document.getElementById("Custom").style.display == "block") {
+        duration = 0
+        tid = document.getElementById("taskID").value;
+        uri = document.getElementById("taskURI").value;
+      }
+
       try{
           await fetch("http://localhost:8000/api/v1/tasks/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ duration: parseInt(duration) })
+            body: JSON.stringify({ 
+              duration: parseInt(duration) , 
+              task_id: tid,
+              uri: uri})
           });
       } catch(error) {
         console.error("Error creating task:", error);

@@ -10,9 +10,13 @@ def clear_redis():
     r.flushall()
 
 @pytest.mark.asyncio
-async def test_create_task():
+async def test_create_task_simple():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        response = await ac.post("/api/v1/tasks/", json={"duration": "5"})
+        response = await ac.post("/api/v1/tasks/", json={
+            "duration": "5",
+            "task_id":"",
+            "uri":""
+            })
     assert response.status_code == 200
     data = response.json()
     assert "task_id" in data
@@ -22,8 +26,13 @@ async def test_create_task():
 
 @pytest.mark.asyncio
 async def test_check_all_task_statuses():
+    # create a dummy task and check it shows up in status list
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        await ac.post("/api/v1/tasks/", json={"duration": "5"})
+        await ac.post("/api/v1/tasks/", json={
+            "duration": "5",
+            "task_id":"",
+            "uri":""
+            })
         response = await ac.get("/api/v1/tasks/")
     assert response.status_code == 200
     data = response.json()
@@ -35,12 +44,16 @@ async def test_check_all_task_statuses():
 async def test_background_task_completion():
     with patch("app.services.task_runner.time.sleep", return_value=None):
         async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-            response = await ac.post("/api/v1/tasks/", json={"duration": 20})
+            response = await ac.post("/api/v1/tasks/", json={
+            "duration": "5",
+            "task_id":"",
+            "uri":""
+            })
             task_id = response.json()["task_id"]
 
         # Import and manually call the background task logic
         from app.services.task_runner import run_task
-        run_task(task_id, 5)  # No sleep, immediately completes
+        run_task(task_id, 5, "")  # No sleep, immediately completes
 
         async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
             response = await ac.get("/api/v1/tasks/")
