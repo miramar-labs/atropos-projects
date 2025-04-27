@@ -75,7 +75,7 @@
         - Monitoring/Logging:
           - Prometheus/Grafana
   - Security:
-    - HTTPS/TLS - encrypt all data over the wire or at rest.
+    - HTTPS/TLS - encrypt all data over the wire and/or at rest.
     - KeyVault for secrets
   - Task scheduling:
     - Use a distributed task queue such as [Celery](https://github.com/celery/celery) for this
