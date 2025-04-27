@@ -68,12 +68,12 @@
 - Improvements & production deployment considerations:
   - Cloud: 
       - Kubernetes as a base platform for HA and Multicloud portability.
-    - Scalability:
-      - REDIS is scalable vertically and horizontally
-      - Deploy a Load balancer - NGINX
-      - H-scale out app deployments as needed behind LB.
-    - Monitoring/Logging:
-      - Prometheus/Grafana
+        - Scalability:
+          - REDIS is scalable vertically and horizontally
+          - Deploy a Load balancer - NGINX
+          - H-scale out app deployments as needed behind LB.
+        - Monitoring/Logging:
+          - Prometheus/Grafana
     - Security:
       - HTTPS/TLS - encrypt all data over the wire or at rest.
       - KeyVault for secrets
