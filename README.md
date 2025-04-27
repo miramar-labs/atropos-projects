@@ -25,10 +25,14 @@
 
       http://localhost:8000
 
+![app](resources/scr2.png)
+
 - Load the REST API Swagger in another tab:
 
       http://localhost/8000/docs
 
+
+![swagger](resources/scr3.png)
 
 - Run tests (from commandline):
 
