@@ -74,9 +74,9 @@
           - H-scale out app deployments as needed behind LB.
         - Monitoring/Logging:
           - Prometheus/Grafana
-    - Security:
-      - HTTPS/TLS - encrypt all data over the wire or at rest.
-      - KeyVault for secrets
+  - Security:
+    - HTTPS/TLS - encrypt all data over the wire or at rest.
+    - KeyVault for secrets
   - Task scheduling:
     - Use a distributed task queue such as [Celery](https://github.com/celery/celery) for this
   - CI/CD
