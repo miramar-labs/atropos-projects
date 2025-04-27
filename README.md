@@ -79,6 +79,7 @@
     - KeyVault for secrets
   - Task scheduling:
     - Use a distributed task queue such as [Celery](https://github.com/celery/celery) for this
+    - or some CRON based solution
   - CI/CD
     - Use whatever is native to the Cloud provider you are using.
   - Open Source solutions:
