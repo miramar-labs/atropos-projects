@@ -67,7 +67,7 @@
     - *Custom*: by specifying a UUID, the app will look for a python script named `app/tasks/<uuid>.py` and attempt to run it in the background. An optional 'uri' arg can be passed to the task, which could be used by the task to locate any input artifacts it needs (in an S3 bucket for example)...the task returns a result string (which could also be an S3 bucket uri containing result arifacts).
 - Improvements & production deployment considerations:
   - Cloud: 
-      - Kubernetes as a base platform for HA and Multicloud portability.
+      - Kubernetes as a base platform for HA and multi-cloud portability.
         - Scalability:
           - REDIS is scalable vertically and horizontally
           - Deploy a Load balancer - NGINX
