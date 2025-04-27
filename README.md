@@ -79,6 +79,8 @@
     - Use a distributed task queue such as [Celery](https://github.com/celery/celery) for this
   - CI/CD
     - Use whatever is native to the Cloud provider you are using.
+  - Open Source solutions:
+    - [Apache AirFlow](https://airflow.apache.org/) would be a great choice for this if you don't want to roll your own.
 
 # Configure Development Environment [optional]:
   
