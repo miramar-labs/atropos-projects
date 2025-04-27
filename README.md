@@ -52,7 +52,7 @@
 # Application Notes
 
 - The application implements a basic REST API to manage tasks using FastAPI.
-- The API is asynchronous, so that it can manage long running tasks without waiting for results.
+- The API is asynchronous, so that it can manage long running tasks without blocking/waiting for results.
 - Tasks are identified by unique id's (UUID's)
 - Task status can be polled for as needed by the client.
 - Task state is persisted to a scalable REDIS store.
