@@ -10,7 +10,7 @@ def clear_redis():
     r.flushall()
 
 @pytest.mark.asyncio
-async def test_create_task_simple():
+async def test_create_task():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         response = await ac.post("/api/v1/tasks/", json={
             "duration": "5",
