@@ -2,7 +2,7 @@
 # START HERE
 - First, clone the project GitHub repo:
  
-      git clone git@github.com:miramar-labs/atropos-projects.git
+      git clone https://github.com/miramar-labs/atropos-projects.git
 
 - Next, ensure you have the required toolchain:
   - [Docker](https://www.docker.com/)
@@ -34,20 +34,6 @@
 
 ![swagger](resources/scr3.png)
 
-- Run tests (from commandline):
-
-  - First, start REDIS (if not already running):
-  
-            cd atropos-projects/backend
-            docker compose up redis
-
-  - Now run the tests:
-
-            pytest
-
-  - Alternatievly you can run/debug tests with coverage from vscode:
-
-  ![test coverage](resources/scr1.png)
 
 # Application Notes
 
@@ -111,3 +97,18 @@
         pip install -r requirements.txt
 
 - Run `vscode` and open the `atropos-projects` folder
+
+- Run tests (from commandline):
+
+  - First, start REDIS (if not already running):
+  
+            cd atropos-projects/backend
+            docker compose up redis
+
+  - Now run the tests:
+
+            pytest
+
+  - Alternatievly you can run/debug tests with coverage from vscode:
+
+  ![test coverage](resources/scr1.png)
