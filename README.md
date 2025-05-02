@@ -85,6 +85,8 @@
   
 - [Install pyenv](https://github.com/pyenv/pyenv)
   
+- [Install pyenv-virtualenv plugin](https://github.com/pyenv/pyenv-virtualenv)
+  
 - Then create a python virtual environment:
   
         pyenv install 3.12.8
