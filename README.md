@@ -100,6 +100,12 @@
 
 - Run `vscode` and open the `atropos-projects` folder
 
+- Make sure vscode is running in the context of *your* python venv:
+
+  CTRL-SHIFT-P 
+
+      Python: Select Interpreter
+
 - Run tests (from commandline):
 
   - First, start REDIS (if not already running):
