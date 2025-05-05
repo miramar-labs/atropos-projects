@@ -93,7 +93,7 @@
         pyenv virtualenv 3.12.8 atropos
         
         cd atropos-projects
-        pyenv local 3.12.8
+        pyenv local atropos
 
         cd backend
         pip install -r requirements.txt
